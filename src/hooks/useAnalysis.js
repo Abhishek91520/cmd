@@ -12,7 +12,7 @@ export function useAnalysis() {
     processingStep: "",
   });
 
-  const analyzeFile = useCallback(async (file, modelId) => {
+  const analyzeFile = useCallback(async (file, modelId, category, language) => {
     setState((prev) => ({ ...prev, status: "uploading", file, error: null }));
 
     try {
@@ -31,7 +31,7 @@ export function useAnalysis() {
         ...prev,
         status: "processing",
         documentText: text,
-        processingStep: "AI analyzing contract risks...",
+        processingStep: "AI analyzing document intelligence...",
       }));
 
       const response = await fetch("/api/analyze", {
@@ -39,8 +39,10 @@ export function useAnalysis() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           documentText: text,
-          documentName: file.name || "Contract",
-          modelId: modelId || "meta/llama-3.1-70b-instruct"
+          documentName: file.name || "Document",
+          modelId: modelId || "meta/llama-3.1-70b-instruct",
+          category: category || "Contract / Agreement",
+          language: language || "English"
         }),
       });
 
@@ -50,10 +52,12 @@ export function useAnalysis() {
 
       if (!result.success) throw new Error(result.error);
 
-      // Save the model used in the master data for rendering on the dashboard
+      // Save configurations for dashboard view
       const enrichedData = {
         ...result.data,
-        model_used: modelId || "meta/llama-3.1-70b-instruct"
+        model_used: modelId || "meta/llama-3.1-70b-instruct",
+        category_used: category || "Contract / Agreement",
+        language_used: language || "English"
       };
 
       setState((prev) => ({
@@ -72,14 +76,14 @@ export function useAnalysis() {
     }
   }, []);
 
-  const analyzeDemo = useCallback(async (demoContract, modelId) => {
+  const analyzeDemo = useCallback(async (demoContract, modelId, language) => {
     setState((prev) => ({
       ...prev,
       status: "processing",
       file: { name: demoContract.title },
       documentText: demoContract.text,
       error: null,
-      processingStep: "AI analyzing contract risks...",
+      processingStep: "AI analyzing document intelligence...",
     }));
 
     try {
@@ -89,17 +93,21 @@ export function useAnalysis() {
         body: JSON.stringify({
           documentText: demoContract.text,
           documentName: demoContract.title,
-          modelId: modelId || "meta/llama-3.1-70b-instruct"
+          modelId: modelId || "meta/llama-3.1-70b-instruct",
+          category: demoContract.category || "Contract / Agreement",
+          language: language || "English"
         }),
       });
 
       const result = await response.json();
       if (!result.success) throw new Error(result.error);
 
-      // Save the model used in the master data for rendering on the dashboard
+      // Save configurations for dashboard view
       const enrichedData = {
         ...result.data,
-        model_used: modelId || "meta/llama-3.1-70b-instruct"
+        model_used: modelId || "meta/llama-3.1-70b-instruct",
+        category_used: demoContract.category || "Contract / Agreement",
+        language_used: language || "English"
       };
 
       setState((prev) => ({

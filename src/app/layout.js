@@ -1,3 +1,5 @@
+import "./globals.css";
+
 export const metadata = {
   title: "Document Intelligence & Risk OS — NVIDIA NIM AI",
   description: "Drop any contract, invoice, medical report, notice, or ID. NVIDIA NIM AI identifies hidden risks, translates to Indian regional languages, and answers custom questions instantly.",

@@ -1,7 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Shield, Zap, FileSearch, Sparkles, ArrowRight, Brain, Clock, ShieldCheck, HelpCircle } from "lucide-react";
+import { Shield, Zap, FileSearch, Sparkles, ArrowRight, Brain, Clock, ShieldCheck, Languages, FolderOpen } from "lucide-react";
 import UploadZone from "@/components/upload/UploadZone";
 import DemoPresets from "@/components/upload/DemoPresets";
 import StreamingLoader from "@/components/ui/StreamingLoader";
@@ -10,10 +10,33 @@ import { useAnalysis } from "@/hooks/useAnalysis";
 import { AVAILABLE_MODELS } from "@/lib/models";
 import { useEffect, useState, useRef } from "react";
 
+const DOCUMENT_CATEGORIES = [
+  "Contract / Agreement",
+  "Invoice / Receipt",
+  "Medical Report",
+  "Government Notice",
+  "Financial Report",
+  "Research Paper",
+  "Insurance Policy",
+  "Property Document",
+  "Certificate / Marksheet",
+  "Tax Document",
+  "ID Document"
+];
+
+const LANGUAGES = [
+  { id: "English", label: "English" },
+  { id: "Hindi", label: "हिन्दी (Hindi)" },
+  { id: "Marathi", label: "मराठी (Marathi)" },
+  { id: "Tamil", label: "தமிழ் (Tamil)" }
+];
+
 export default function HomePage() {
   const router = useRouter();
   const [showWorkspace, setShowWorkspace] = useState(false);
   const [selectedModel, setSelectedModel] = useState("meta/llama-3.1-70b-instruct");
+  const [selectedCategory, setSelectedCategory] = useState("Contract / Agreement");
+  const [selectedLanguage, setSelectedLanguage] = useState("English");
   const workspaceRef = useRef(null);
 
   const { status, processingStep, masterData, error, analyzeFile, analyzeDemo } =
@@ -25,9 +48,11 @@ export default function HomePage() {
       // Store in sessionStorage for dashboard page
       sessionStorage.setItem("contractData", JSON.stringify(masterData));
       sessionStorage.setItem("selectedModel", selectedModel);
+      sessionStorage.setItem("selectedCategory", selectedCategory);
+      sessionStorage.setItem("selectedLanguage", selectedLanguage);
       router.push("/dashboard");
     }
-  }, [status, masterData, router, selectedModel]);
+  }, [status, masterData, router, selectedModel, selectedCategory, selectedLanguage]);
 
   const handleLaunchWorkspace = () => {
     setShowWorkspace(true);
@@ -65,7 +90,7 @@ export default function HomePage() {
             onClick={handleLaunchWorkspace}
             className="text-xs bg-indigo-600 hover:bg-indigo-500 text-white font-bold px-4 py-2 rounded-xl transition-all cursor-pointer shadow-lg shadow-indigo-500/10"
           >
-            Launch Analyzer
+            Launch Workspace
           </button>
         </header>
 
@@ -100,7 +125,7 @@ export default function HomePage() {
             transition={{ delay: 0.2 }}
             className="text-base sm:text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed"
           >
-            Ingest contracts instantly. NVIDIA NIM-powered reasoning audits hidden liabilities, structures interactive timelines, and rewrites clauses on-demand.
+            Ingest 11+ document categories instantly. NVIDIA NIM-powered reasoning audits hidden liabilities, structures interactive timelines, and translates into Indian regional languages on-demand.
           </motion.p>
 
           <motion.div
@@ -160,9 +185,9 @@ export default function HomePage() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { icon: Shield, title: "Shield Vulnerability Audit", desc: "Instantly audits terms, auto-renewals, non-competes, and uncapped liabilities, scoring risks out of 10." },
-              { icon: FileSearch, title: "Plain-English Translator", desc: "Converts archaic legalese into clear, understandable summaries, revealing what you are agreeing to." },
-              { icon: Brain, title: "Git-Diff Negotiation Playground", desc: "Selects dangerous terms, re-writes them in 3 custom tones (Balanced, Aggressive, Friendly), and drafts counter-proposal emails." },
+              { icon: Shield, title: "Multilingual Document Audits", desc: "Instantly audits terms, auto-renewals, non-competes, and late fees, supporting 11 distinct document categories natively." },
+              { icon: FileSearch, title: "Plain-English & Indian Translations", desc: "Converts archaic legalese into clear, understandable summaries in Hindi, Marathi, Tamil, or English." },
+              { icon: Brain, title: "Git-Diff Negotiation Playground", desc: "Selects dangerous terms, re-writes them in 3 custom tones, drafts proposal emails, and compares different drafts." },
             ].map((feature, i) => (
               <div key={i} className="p-6 rounded-2xl bg-slate-900 border border-slate-800/80 flex flex-col justify-between group hover:border-slate-700 transition-all duration-200">
                 <div className="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
@@ -257,8 +282,47 @@ export default function HomePage() {
                 </div>
                 <h2 className="text-3xl font-extrabold text-white">Ingestion Workspace</h2>
                 <p className="text-sm text-slate-400 max-w-md mx-auto">
-                  Drop your contract PDF or try one of our pre-set demo contracts to run a full interactive audit.
+                  Audit contracts, invoices, medical sheets, IDs, and tax returns in Indian languages instantly.
                 </p>
+              </div>
+
+              {/* Ingestion Settings Bar (Category and Language selector) */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-slate-900 border border-slate-800 rounded-2xl p-4">
+                <div className="space-y-1.5">
+                  <label className="text-[10px] text-slate-500 font-bold uppercase tracking-wider flex items-center gap-1.5">
+                    <FolderOpen className="w-3.5 h-3.5 text-indigo-400" />
+                    Document Category
+                  </label>
+                  <select
+                    value={selectedCategory}
+                    onChange={(e) => setSelectedCategory(e.target.value)}
+                    className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white outline-none cursor-pointer focus:border-indigo-500 transition-colors"
+                  >
+                    {DOCUMENT_CATEGORIES.map((cat) => (
+                      <option key={cat} value={cat}>
+                        {cat}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div className="space-y-1.5">
+                  <label className="text-[10px] text-slate-500 font-bold uppercase tracking-wider flex items-center gap-1.5">
+                    <Languages className="w-3.5 h-3.5 text-indigo-400" />
+                    Auditing & Translation Language
+                  </label>
+                  <select
+                    value={selectedLanguage}
+                    onChange={(e) => setSelectedLanguage(e.target.value)}
+                    className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white outline-none cursor-pointer focus:border-indigo-500 transition-colors"
+                  >
+                    {LANGUAGES.map((lang) => (
+                      <option key={lang.id} value={lang.id}>
+                        {lang.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
               </div>
 
               {/* Upload Zone */}
@@ -271,8 +335,8 @@ export default function HomePage() {
                     exit={{ opacity: 0 }}
                     className="space-y-6"
                   >
-                    <UploadZone onFileAccepted={(file) => analyzeFile(file, selectedModel)} />
-                    <DemoPresets onSelect={(contract) => analyzeDemo(contract, selectedModel)} />
+                    <UploadZone onFileAccepted={(file) => analyzeFile(file, selectedModel, selectedCategory, selectedLanguage)} />
+                    <DemoPresets onSelect={(contract) => analyzeDemo(contract, selectedModel, selectedLanguage)} />
                     {error && (
                       <p className="text-center text-red-400 text-xs mt-4 bg-red-500/10 border border-red-500/20 rounded-xl py-3 font-semibold font-mono">
                         ⚠ {error}
