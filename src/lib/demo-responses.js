@@ -2,7 +2,7 @@ export const DEMO_RESPONSES = {
   freelance: {
     document_summary: {
       title: "Freelance Development Contract",
-      type: "Freelance Contract",
+      type: "Contract / Agreement",
       parties: ["TechCorp Inc.", "Developer (Contractor)"],
       effective_date: "January 1, 2025",
       jurisdiction: "Delaware, USA",
@@ -21,14 +21,6 @@ export const DEMO_RESPONSES = {
         due_date: "Within 60 days of invoice",
         notes: "No late payment penalty. Client can withhold pay if unsatisfied at their sole discretion.",
         total_exposure: "$30,000 total base contract exposure"
-      },
-      {
-        type: "Late Payment Penalty",
-        amount: "$0",
-        frequency: "one-time",
-        due_date: "N/A",
-        notes: "No penalties apply for late payments by client.",
-        total_exposure: "N/A"
       }
     ],
     deadlines: [
@@ -38,13 +30,6 @@ export const DEMO_RESPONSES = {
         type: "renewal",
         urgency: "high",
         consequence: "Automatically renews contract for another 12-month period with no exit option"
-      },
-      {
-        date: "Monthly (Invoice Date)",
-        description: "Invoice submission deadline",
-        type: "payment",
-        urgency: "medium",
-        consequence: "60-day payment delay window starts counting only after invoice acceptance"
       }
     ],
     clauses: [
@@ -67,42 +52,6 @@ export const DEMO_RESPONSES = {
         section: "Section 2 (Payment Terms)"
       },
       {
-        id: "clause_3",
-        title: "Intellectual Property Grab",
-        original_text: "All work product, inventions, and code created by Contractor during this engagement, including work created outside of business hours and unrelated to the project, shall become sole property of Client.",
-        plain_english: "TechCorp owns absolutely everything you write during the contract period—even side projects you build on weekends completely unrelated to their e-commerce platform.",
-        risk_level: "high",
-        risk_reason: "Unreasonably broad IP transfer encompassing off-hours, unrelated personal side projects.",
-        section: "Section 3 (Intellectual Property)"
-      },
-      {
-        id: "clause_4",
-        title: "Immediate At-Will Termination",
-        original_text: "Client may terminate this agreement at any time without notice and without any severance or compensation to Contractor for work in progress.",
-        plain_english: "The client can fire you instantly, mid-day, without warning, and avoid paying you for any work-in-progress.",
-        risk_level: "high",
-        risk_reason: "No transition buffer, no notice period, and forfeiture of payment for completed partial milestones.",
-        section: "Section 4 (Termination)"
-      },
-      {
-        id: "clause_5",
-        title: "Non-Compete Lockdown",
-        original_text: "Contractor agrees not to work with any Client competitors for 3 years after termination. 'Competitors' is defined at Client's sole discretion.",
-        plain_english: "You cannot work for any company TechCorp considers a 'competitor' for 3 full years after you leave, and they get to decide who counts as a competitor.",
-        risk_level: "high",
-        risk_reason: "3-year post-termination duration is highly excessive for a freelance developer and defines 'competitors' far too loosely.",
-        section: "Section 6 (Non-Compete)"
-      },
-      {
-        id: "clause_6",
-        title: "Asymmetrical Liability Limits",
-        original_text: "In the event of any dispute, Client's liability shall not exceed $500 regardless of damages incurred by Contractor. Contractor accepts unlimited liability for any defects in deliverables.",
-        plain_english: "If TechCorp ruins your business, the most you can sue them for is $500. If there is a small bug in your code, you accept infinite liability.",
-        risk_level: "high",
-        risk_reason: "Extreme financial exposure for the developer with no mutual liability cap.",
-        section: "Section 7 (Liability)"
-      },
-      {
         id: "clause_7",
         title: "Auto-Renewal Trap",
         original_text: "This agreement automatically renews for 12-month periods unless terminated with 90 days written notice sent via certified mail only.",
@@ -120,30 +69,6 @@ export const DEMO_RESPONSES = {
         why_it_matters: "A 90-day physical mail notification requirement is highly susceptible to being missed, causing a forced 1-year contract extension.",
         potential_impact: "Locked into 12 months of additional work under unfavorable terms with no alternative exit option.",
         safer_alternative: "Provide a standard 30-day electronic mail notice option to cancel or non-renew."
-      },
-      {
-        type: "Unlimited Side-Project IP Grab",
-        severity: "critical",
-        clause_excerpt: "inventions, and code... created outside of business hours and unrelated to the project",
-        why_it_matters: "This violates normal IP boundaries by laying claim to work built entirely outside the client's scope and contract hours.",
-        potential_impact: "Loss of ownership over proprietary side-hustles, personal apps, and pre-existing code frameworks.",
-        safer_alternative: "Restrict IP transfers strictly to work product created directly for the custom platform during designated work hours."
-      },
-      {
-        type: "Asymmetrical Liability Exposure",
-        severity: "high",
-        clause_excerpt: "Client's liability shall not exceed $500... Contractor accepts unlimited liability",
-        why_it_matters: "You are blocked from pursuing major damages if client breaches, but the client can sue you for unlimited amounts over bugs.",
-        potential_impact: "Severe legal and financial vulnerability that could bankrupt your freelance business over standard code defects.",
-        safer_alternative: "Implement a mutual cap on liability equal to the total fees paid under the contract (e.g., $30,000)."
-      },
-      {
-        type: "Subjective Payment Withholding",
-        severity: "high",
-        clause_excerpt: "withhold payment if 'not satisfied' with deliverables, at Client's sole discretion",
-        why_it_matters: "Gives the client a unilateral excuse to avoid paying for completed services based on a subjective standard.",
-        potential_impact: "Substantial cash flow deficits and unpaid labor for completed platform deliverables.",
-        safer_alternative: "Specify objective acceptance criteria with a structured review and cure period (e.g., 5 days to request modifications)."
       }
     ],
     negotiation_suggestions: [
@@ -152,13 +77,6 @@ export const DEMO_RESPONSES = {
         current_text: "automatically renews for 12-month periods unless terminated with 90 days written notice sent via certified mail only.",
         suggested_change: "This Agreement shall not automatically renew. The parties may agree to extend the term in writing signed by both parties at least 30 days prior to expiration.",
         rationale: "Eliminates the auto-renewal entirely, requiring active mutual consent for any contract extension.",
-        priority: "must-have"
-      },
-      {
-        clause: "Liability Cap (Section 7)",
-        current_text: "In the event of any dispute, Client's liability shall not exceed $500... Contractor accepts unlimited liability.",
-        suggested_change: "Except for breaches of confidentiality, each party's aggregate liability under this Agreement shall be limited to the total fees paid to Contractor during the preceding six months.",
-        rationale: "Balances the risk mutually, preventing devastating unlimited lawsuits.",
         priority: "must-have"
       }
     ],
@@ -174,18 +92,6 @@ export const DEMO_RESPONSES = {
         action: "Amend IP Clause (Section 3)",
         deadline: "Prior to signing",
         reason: "Remove the 'created outside of business hours and unrelated' wording to protect personal projects."
-      },
-      {
-        priority: "high",
-        action: "Establish Mutual Liability Cap (Section 7)",
-        deadline: "Prior to signing",
-        reason: "Limit your total financial exposure to standard contract values."
-      },
-      {
-        priority: "high",
-        action: "Revise Payment Satisfaction Standard (Section 2)",
-        deadline: "Prior to signing",
-        reason: "Incorporate objective testing and acceptance standards instead of a subjective satisfaction clause."
       }
     ]
   },
@@ -193,7 +99,7 @@ export const DEMO_RESPONSES = {
   lease: {
     document_summary: {
       title: "Commercial Property Lease",
-      type: "Commercial Lease",
+      type: "Property Document",
       parties: ["Commercial Property Landlord", "Tenant"],
       effective_date: "January 1, 2025",
       jurisdiction: "State of Property Location",
@@ -212,14 +118,6 @@ export const DEMO_RESPONSES = {
         due_date: "1st of each month",
         notes: "Subject to annual increases of CPI + 3% (minimum 5% per year).",
         total_exposure: "$510,000 base value over 5 years"
-      },
-      {
-        type: "Security Deposit",
-        amount: "$25,500",
-        frequency: "one-time",
-        due_date: "Upon execution",
-        notes: "Unilateral landlord usage for damages. Non-interest-bearing.",
-        total_exposure: "$25,500 locked asset"
       }
     ],
     deadlines: [
@@ -240,15 +138,6 @@ export const DEMO_RESPONSES = {
         risk_level: "medium",
         risk_reason: "High minimum escalator compound which may exceed actual market rate shifts over 5 years.",
         section: "Section 1 (Rent)"
-      },
-      {
-        id: "lease_c2",
-        title: "Discretionary Security Deposit Deductions",
-        original_text: "Tenant shall deposit $25,500 (3 months rent). Landlord may use deposit for any 'damages' at landlord's sole discretion. Deposit is non-interest-bearing.",
-        plain_english: "Landlord can take deposit money for repairs whenever they feel like it, and your money earns no interest.",
-        risk_level: "medium",
-        risk_reason: "Subjective deductions without receipt requirements or joint walkthrough standards.",
-        section: "Section 2 (Security Deposit)"
       }
     ],
     hidden_risks: [
@@ -289,7 +178,7 @@ export const DEMO_RESPONSES = {
   employment: {
     document_summary: {
       title: "Employment Agreement",
-      type: "Employment Agreement",
+      type: "Contract / Agreement",
       parties: ["Employer Corp", "Employee (Senior Software Engineer)"],
       effective_date: "February 1, 2025",
       jurisdiction: "State of Headquarters",
@@ -320,15 +209,6 @@ export const DEMO_RESPONSES = {
       }
     ],
     clauses: [
-      {
-        id: "emp_c1",
-        title: "At-Will & Zero Severance",
-        original_text: "This employment is at-will. Either party may terminate at any time, for any reason. Company provides no severance upon termination.",
-        plain_english: "You can be let go on any Tuesday afternoon with no warning, and they don't have to pay you any severance.",
-        risk_level: "medium",
-        risk_reason: "Total lack of employment buffer or transition severance protection.",
-        section: "Section 1 (At-Will)"
-      },
       {
         id: "emp_c2",
         title: "Aggressive Non-Compete Radius",
@@ -370,6 +250,330 @@ export const DEMO_RESPONSES = {
         action: "Narrow Non-Compete Scope (Section 4)",
         deadline: "Prior to signing",
         reason: "Negotiate down the 18-month term to 6 months, and restrict 'industry' strictly to direct business competitors."
+      }
+    ]
+  },
+
+  invoice: {
+    document_summary: {
+      title: "Corporate Purchase Invoice",
+      type: "Invoice / Receipt",
+      parties: ["Apex Solutions (Vendor)", "TechCorp Retail (Buyer)"],
+      effective_date: "May 10, 2026",
+      jurisdiction: "New York, USA",
+      summary: "Invoice #INV-2026-8809 totaling $45,600.00 for custom database hosting services and server setup, subject to standard billing cycles."
+    },
+    risk_score: {
+      score: 3,
+      level: "low",
+      summary: "Standard purchase order invoice. Minimal risk found, with standard dispute windows."
+    },
+    financial_obligations: [
+      {
+        type: "Total Amount Due",
+        amount: "$45,600.00",
+        frequency: "one-time",
+        due_date: "June 10, 2026",
+        notes: "Subject to a 1.5% compounding late fee monthly after 30 days.",
+        total_exposure: "$45,600.00 total single billing obligation"
+      }
+    ],
+    deadlines: [
+      {
+        date: "June 10, 2026",
+        description: "Full settlement payment of invoice #INV-2026-8809",
+        type: "payment",
+        urgency: "medium",
+        consequence: "1.5% compounding late fees applied monthly to outstanding balance"
+      }
+    ],
+    clauses: [
+      {
+        id: "inv_c1",
+        title: "Late Payment Penalty Compounding",
+        original_text: "Invoices unpaid after thirty (30) days from due date shall accrue a late payment interest fee equal to 1.5% per month, compounding daily.",
+        plain_english: "If you pay more than 30 days late, you start paying a 1.5% interest charge that mounts up every single day.",
+        risk_level: "medium",
+        risk_reason: "Daily compounding structure is highly punitive compared to standard simple monthly late interest fees.",
+        section: "Section 4.2 (Interest)"
+      }
+    ],
+    hidden_risks: [
+      {
+        type: "Punitive Interest Compounding",
+        severity: "medium",
+        clause_excerpt: "equal to 1.5% per month, compounding daily",
+        why_it_matters: "Daily compounding creates rapid interest build-ups that far exceed normal monthly simple interest caps.",
+        potential_impact: "Substantial cash outflows over delayed dispute resolution times.",
+        safer_alternative: "Specify simple monthly interest not exceeding 1% with a 15-day grace period."
+      }
+    ],
+    negotiation_suggestions: [
+      {
+        clause: "Late Interest (Section 4.2)",
+        current_text: "1.5% per month, compounding daily",
+        suggested_change: "1.0% simple monthly interest, with zero compounding",
+        rationale: "Prevents aggressive compounding fee escalations.",
+        priority: "nice-to-have"
+      }
+    ],
+    plain_english_map: {
+      what_you_are_agreeing_to: "You agree to pay $45.6k in full by June 10, 2026, accepting daily compounding penalties if unpaid after 30 days.",
+      what_you_cannot_do: "You cannot withhold full invoice values over minor itemized database disputes.",
+      what_happens_if_things_go_wrong: "If you pay late, you face rapid late-fee compounding.",
+      what_are_the_biggest_traps: "Daily compounding interest loops."
+    },
+    action_items: [
+      {
+        priority: "medium",
+        action: "Confirm Database Deliverable Verification",
+        deadline: "June 5, 2026",
+        reason: "Verify database hosting works perfectly prior to releasing the $45,600.00 payment."
+      }
+    ]
+  },
+
+  medical: {
+    document_summary: {
+      title: "Clinical Discharge Summary",
+      type: "Medical Report",
+      parties: ["Metro Health Hospital", "Patient (John Doe)"],
+      effective_date: "April 24, 2026",
+      jurisdiction: "Clinical Standards Board",
+      summary: "Patient John Doe discharged after successful laparoscopic appendectomy. Stable vitals, post-op instructions, and medication schedule."
+    },
+    risk_score: {
+      score: 2,
+      level: "low",
+      summary: "Standard post-surgery discharge briefing. Primary risks are clinical compliance and medication schedule adherence."
+    },
+    financial_obligations: [
+      {
+        type: "Post-op Meds Copay",
+        amount: "₹1,200 / $15.00",
+        frequency: "one-time",
+        due_date: "At pharmacy checkout",
+        notes: "Subject to health insurance policy coverages.",
+        total_exposure: "N/A"
+      }
+    ],
+    deadlines: [
+      {
+        date: "May 1, 2026",
+        description: "Post-op clinical surgical follow-up check",
+        type: "medical-followup",
+        urgency: "high",
+        consequence: "Risk of unnoticed surgical wound infections or internal healing delays"
+      }
+    ],
+    clauses: [
+      {
+        id: "med_c1",
+        title: "Medication Contraindications",
+        original_text: "Patient must take Amoxicillin 500mg three times daily for 7 days. Do NOT ingest alcohol during this period due to heavy liver contraindications.",
+        plain_english: "Take your antibiotics exactly 3 times a day for a week, and do not drink alcohol at all because it can cause severe liver issues.",
+        risk_level: "high",
+        risk_reason: "High clinical vulnerability if patient neglects strict chemical contraindications.",
+        section: "Discharge Meds"
+      }
+    ],
+    hidden_risks: [
+      {
+        type: "Medication Liver Warning",
+        severity: "high",
+        clause_excerpt: "Do NOT ingest alcohol during this period due to heavy liver contraindications",
+        why_it_matters: "Antibiotics mixed with alcohol cause severe hepatic stress, nausea, and drop therapeutic effectiveness.",
+        potential_impact: "Drug-induced liver injury or surgical recovery complications.",
+        safer_alternative: "Complete the full 7-day course while staying hydrated and avoiding alcohol."
+      }
+    ],
+    negotiation_suggestions: [
+      {
+        clause: "Antibiotics (Section 2)",
+        current_text: "Amoxicillin 500mg 3x daily",
+        suggested_change: "Amoxicillin 500mg 3x daily, supplemented with standard gut probiotics",
+        rationale: "Maintains optimal digestive microbiome balance during recovery.",
+        priority: "nice-to-have"
+      }
+    ],
+    plain_english_map: {
+      what_you_are_agreeing_to: "You agree to take 7 days of antibiotics, avoid alcohol, and return for stitches checkups on May 1.",
+      what_you_cannot_do: "You cannot lift weights over 10 lbs or run marathons for 2 full weeks.",
+      what_happens_if_things_go_wrong: "If pain spikes or fever rises above 101F, you must go to Emergency immediately.",
+      what_are_the_biggest_traps: "Unnoticed wound infections due to missing surgical follow-up appointments."
+    },
+    action_items: [
+      {
+        priority: "urgent",
+        action: "Book Surgical Follow-up Clinic Appointment",
+        deadline: "April 28, 2026",
+        reason: "Secure follow-up slot for surgical incision inspections."
+      }
+    ]
+  },
+
+  id: {
+    document_summary: {
+      title: "Individual PAN Verification Summary",
+      type: "ID Document",
+      parties: ["Income Tax Dept (Issuer)", "Individual Card Holder"],
+      effective_date: "Active Permanent ID",
+      jurisdiction: "Govt of India",
+      summary: "PAN Verification audit. Checks validity, name matching indices, registration statuses, and standard compliance."
+    },
+    risk_score: {
+      score: 1,
+      level: "low",
+      summary: "ID Document is completely valid, active, and matching official registry indices."
+    },
+    financial_obligations: [
+      {
+        type: "N/A",
+        amount: "₹0",
+        frequency: "N/A",
+        due_date: "N/A",
+        notes: "Standard individual identity document.",
+        total_exposure: "N/A"
+      }
+    ],
+    deadlines: [
+      {
+        date: "Immediate (Compliance Check)",
+        description: "Ensure PAN-Aadhaar linking is complete in Govt registries",
+        type: "compliance",
+        urgency: "high",
+        consequence: "PAN becomes 'Inoperative', leading to higher tax deductions at source (TDS)"
+      }
+    ],
+    clauses: [
+      {
+        id: "id_c1",
+        title: "PAN-Aadhaar Mandatory Linking",
+        original_text: "Every PAN holder must link their card to their Aadhaar registry. Failure to link renders the card inoperative.",
+        plain_english: "Link your PAN card to Aadhaar immediately, or your PAN card gets blocked and taxes will be deducted at higher rates.",
+        risk_level: "medium",
+        risk_reason: "High regulatory impact if neglected.",
+        section: "Registry Section"
+      }
+    ],
+    hidden_risks: [
+      {
+        type: "PAN Inoperative Risk",
+        severity: "high",
+        clause_excerpt: "renders the card inoperative",
+        why_it_matters: "An inoperative PAN stops you from opening bank accounts, buying mutual funds, or filing tax returns.",
+        potential_impact: "Regulatory lockout from standard banking and investments.",
+        safer_alternative: "Complete instant e-linking on the Indian Income Tax e-filing portal."
+      }
+    ],
+    negotiation_suggestions: [
+      {
+        clause: "ID Linking",
+        current_text: "Failure to link renders card inoperative",
+        suggested_change: "Ensure e-linking is completed on Govt portal with Aadhaar OTP verification",
+        rationale: "Retains full active registration status without banking blocks.",
+        priority: "must-have"
+      }
+    ],
+    plain_english_map: {
+      what_you_are_agreeing_to: "You agree to keep your identity details updated, match official PAN spelling, and complete mandatory Aadhaar integrations.",
+      what_you_cannot_do: "You cannot hold multiple PAN cards, which constitutes a legal offense subject to ₹10,000 penalties.",
+      what_happens_if_things_go_wrong: "If details don't match, tax returns fail filing checks.",
+      what_are_the_biggest_traps: "Failing to link cards causing silent tax status downgrades."
+    },
+    action_items: [
+      {
+        priority: "high",
+        action: "Verify Aadhaar Link Status",
+        deadline: "Prior to next filing cycle",
+        reason: "Verify linking on e-portal to prevent higher TDS deductions."
+      }
+    ]
+  },
+
+  tax: {
+    document_summary: {
+      title: "Individual ITR-1 Filing Acknowledgment",
+      type: "Tax Document",
+      parties: ["Income Tax Department", "Taxpayer"],
+      effective_date: "Assessment Year 2025-26",
+      jurisdiction: "Govt of India",
+      summary: "ITR-1 Form filing confirmation. Confirms reported gross income, tax deductions, and finalized net tax refund due to the taxpayer."
+    },
+    risk_score: {
+      score: 2,
+      level: "low",
+      summary: "Tax filing is successful. Risk scores relate to audit selections or matching issues in Form 26AS."
+    },
+    financial_obligations: [
+      {
+        type: "Gross Tax Payable",
+        amount: "₹1,24,500.00",
+        frequency: "annually",
+        due_date: "July 31, 2025",
+        notes: "Paid in full via advanced taxes and self-assessment tax credits.",
+        total_exposure: "N/A"
+      },
+      {
+        type: "Tax Refund Due",
+        amount: "₹12,400.00",
+        frequency: "one-time",
+        due_date: "Processing window",
+        notes: "Direct bank credit upon final assessment.",
+        total_exposure: "N/A"
+      }
+    ],
+    deadlines: [
+      {
+        date: "July 31, 2025",
+        description: "Submit and e-verify ITR-1 return",
+        type: "tax-deadline",
+        urgency: "high",
+        consequence: "Late filing fees up to ₹5,000 and compounding interest on outstanding tax dues"
+      }
+    ],
+    clauses: [
+      {
+        id: "tax_c1",
+        title: "Section 80C Deductions Limit",
+        original_text: "Taxpayer claimed deductions under Section 80C totaling ₹1,50,000. Claims must be supported by valid savings and insurance certificates.",
+        plain_english: "You claimed ₹1.5L in tax savings under 80C. Keep your insurance and ELSS receipts safe in case the tax department asks for proof.",
+        risk_level: "low",
+        risk_reason: "Standard claim validation requirements.",
+        section: "Chapter VI-A Deductions"
+      }
+    ],
+    hidden_risks: [
+      {
+        type: "AIS-26AS Discrepancies",
+        severity: "medium",
+        clause_excerpt: "Claims must be supported by valid savings",
+        why_it_matters: "Mismatch between claimed deductions/income and data reported by banks in the Annual Information Statement (AIS) triggers automated tax notices.",
+        potential_impact: "Automated scrutiny audit notices and tax recalculation demands.",
+        safer_alternative: "Pre-verify all interest income and TDS records with AIS and Form 26AS sheets prior to submission."
+      }
+    ],
+    negotiation_suggestions: [
+      {
+        clause: "Tax Scrutiny (Section 143)",
+        current_text: "Subject to verification",
+        suggested_change: "Reconcile reported income with AIS and Form 26AS matching records",
+        rationale: "Minimizes scrutiny audit trigger probability.",
+        priority: "nice-to-have"
+      }
+    ],
+    plain_english_map: {
+      what_you_are_agreeing_to: "You agree that all declared incomes, salaries, and interest figures are true and match your PAN bank summaries.",
+      what_you_cannot_do: "You cannot claim standard 80C/80D deductions without actual investment assets or health premium invoices.",
+      what_happens_if_things_go_wrong: "If details don't match, you receive an automated Section 139 defect notice.",
+      what_are_the_biggest_traps: "Failing to declare minor bank interest incomes, causing automated notices."
+    },
+    action_items: [
+      {
+        priority: "high",
+        action: "E-Verify the Return",
+        deadline: "Within 30 days of filing",
+        reason: "ITR remains invalid and unprocessed until e-verification is completed via Aadhaar OTP."
       }
     ]
   }
